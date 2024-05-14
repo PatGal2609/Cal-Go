@@ -100,7 +100,7 @@ func Looperkal(x, plus, y string) {
 				case "/":
 					fmt.Println(Div(num1, num2))
 				default:
-					fmt.Println("Ошибка: не соответствует математической операции")
+					panic("Ошибка: не соответствует математической операции")
 				}
 			} else if x == roman[i] && y == roman[j] {
 				num1 := RomanToInt(x)
@@ -112,7 +112,7 @@ func Looperkal(x, plus, y string) {
 				case "-":
 					rom := Sub(num1, num2)
 					if rom < 1 {
-						fmt.Print("Ошибка: в римской системе нет отрицательных чисел и нуля")
+						panic("Ошибка: в римской системе нет отрицательных чисел и нуля")
 					}
 					fmt.Println(IntToRoman(rom))
 				case "*":
@@ -122,11 +122,11 @@ func Looperkal(x, plus, y string) {
 					rom := Div(num1, num2)
 					fmt.Println(IntToRoman(rom))
 				default:
-					fmt.Println("Ошибка: не соответствует математической операции")
+					panic("Ошибка: не соответствует математической операции")
 				}
 			}
 			if (x == roman[i] && y == inted[j]) || (x == inted[i] && y == roman[j]) {
-				fmt.Println("Ошибка: разные типы счисления")
+				panic("Ошибка: разные типы счисления")
 			}
 		}
 	}
@@ -140,18 +140,17 @@ func main() {
 	line = sc.Text()
 	arr := strings.Split(line, " ")
 	if len(arr) != 3 {
-		fmt.Println("Ошибка: математическая операция должна состоять из двух элементов")
-		return
+		panic("Ошибка: математическая операция должна состоять из двух элементов")
 	}
 	x, plus, y = arr[0], arr[1], arr[2]
 	x1, y1 := ParseInt(x, y)
 	x2 := RomanToInt(x)
 	y2 := RomanToInt(y)
 	if x1 > 10 || y1 > 10 || x1 < 0 || y1 < 0 {
-		fmt.Println("Ошибка: числа находятся в диапозоне от 1 до 10")
+		panic("Ошибка: числа находятся в диапозоне от 1 до 10")
 	}
 	if x2 > 10 || y2 > 10 || x2 < 0 || y2 < 0 {
-		fmt.Println("Ошибка: числа находятся в диапозоне от 1 до 10")
+		panic("Ошибка: числа находятся в диапозоне от 1 до 10")
 	}
 	Looperkal(x, plus, y)
 }
